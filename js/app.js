@@ -1,4 +1,4 @@
-// reset the game by refreshing the page 
+// reset the game by refreshing the page
 function resetGame() {
   location.reload();
 }
@@ -57,10 +57,12 @@ Player.prototype.handleInput = function(key) {
         player.y == Math.floor(e.y) &&
         player.x > Math.floor(e.x))
     ) {
+      console.log("noo");
       resetGame();
+      return;
     }
   });
-
+  
   // Changing player position logic
   if (key === "up") {
     if (this.y < 100) {
@@ -82,6 +84,9 @@ Player.prototype.handleInput = function(key) {
       this.x = this.x + 100;
     }
   } else if (key === "left") {
+    if(player.x - 80 === allEnemies[0].x ){
+      alert("no")
+    }
     if (this.x < 100) {
       this.x = 200;
     } else {
@@ -95,6 +100,18 @@ Player.prototype.handleInput = function(key) {
       player.y == Math.floor(e.y)
     ) {
       resetGame();
+      if(key =="left")
+      player.x = player.x + 100;
+      else if(key==="right"){
+        player.x = player.x - 100;
+
+      }else if(key ==="up"){
+        player.y - player.y - 100;
+
+      }else if(key==="down"){
+        player.y = player.y + 100;
+
+      }
     }
   });
 };
@@ -103,21 +120,22 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies(Done)
 // Place the player object in a variable called player(Done)
 var allEnemies = [];
-var e1 = new Enemy(100, 220, 200);
-var e2 = new Enemy(0, 130, 200);
-var e3 = new Enemy(300, 40, 200);
+var e1 = new Enemy(100, 220, 250);
+var e2 = new Enemy(0, 130, 250);
+var e3 = new Enemy(300, 40, 250);
 
 allEnemies.push(e1);
 allEnemies.push(e2);
 allEnemies.push(e3);
 
 var player = new Player(200, 400, 0);
-
-// checkiing for collisions  
+var isPass = true;
+// checkiing for collisions
 setInterval(() => {
   allEnemies.forEach(e => {
     if (player.x == Math.floor(e.x) && player.y == Math.floor(e.y)) {
       resetGame();
+      isPass = false;
     }
   });
 });
