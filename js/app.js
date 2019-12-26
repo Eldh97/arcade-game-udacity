@@ -1,10 +1,5 @@
-// reset the game by refreshing the page
-function resetGame() {
-  location.reload();
-}
-
 // Enemies our player must avoid
-var Enemy = function(x, y, movement, width = 100, height = 100) {
+var Enemy = function(x, y, movement) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
@@ -29,15 +24,15 @@ Enemy.prototype.update = function(dt) {
   }
 
   this.x = this.x + this.movement * dt;
-
+  // Axis-Aligned Bounding Box
+  // source: https://stackoverflow.com/questions/13916966/adding-collision-detection-to-images-drawn-on-canvas
   if (
     this.x < player.x + player.width &&
     this.x + this.width > player.x &&
     this.y < player.y + player.height &&
     this.y + this.height > player.y
   ) {
-    isPass = false;
-    resetGame();
+    player.resetGame();
   }
 };
 
@@ -58,6 +53,11 @@ const Player = function(x, y, movement) {
   this.height = 60;
   this.movement = movement;
 };
+
+// reset the game by refreshing the page
+Player.prototype.resetGame = function() {
+  location.reload();
+};
 Player.prototype.update = function(dt) {};
 Player.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
@@ -68,7 +68,7 @@ Player.prototype.handleInput = function(key) {
   if (key === "up") {
     if (player.y < 100) {
       alert("Player wins!!");
-      resetGame();
+      player.resetGameresetGame();
     } else {
       player.y = player.y - 90;
     }
