@@ -85,7 +85,6 @@ Player.prototype.handleInput = function(key) {
     }
   } else if (key === "left") {
     if(player.x - 80 === allEnemies[0].x ){
-      alert("no")
     }
     if (this.x < 100) {
       this.x = 200;
@@ -106,7 +105,7 @@ Player.prototype.handleInput = function(key) {
         player.x = player.x - 100;
 
       }else if(key ==="up"){
-        player.y - player.y - 100;
+        player.y = player.y - 100;
 
       }else if(key==="down"){
         player.y = player.y + 100;
@@ -120,9 +119,9 @@ Player.prototype.handleInput = function(key) {
 // Place all enemy objects in an array called allEnemies(Done)
 // Place the player object in a variable called player(Done)
 var allEnemies = [];
-var e1 = new Enemy(100, 220, 250);
-var e2 = new Enemy(0, 130, 250);
-var e3 = new Enemy(300, 40, 250);
+var e1 = new Enemy(100, 220, 450);
+var e2 = new Enemy(0, 130, 450);
+var e3 = new Enemy(300, 40, 450);
 
 allEnemies.push(e1);
 allEnemies.push(e2);
