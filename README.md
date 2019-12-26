@@ -8,5 +8,5 @@
 
 ## How to play
 - The player needs to reach the water in order to win the game.
-- The player will lose if he has a collision with an enemey(pug).
+- The player will lose if he has a collision with an enemey(bug).
 - The player can not move off screen
