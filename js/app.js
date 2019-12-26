@@ -50,95 +50,54 @@ Player.prototype.render = function() {
 };
 // handle player movements by tracking inputs keys
 Player.prototype.handleInput = function(key) {
-  allEnemies.forEach(e => {
-    if (
-      player.x == Math.floor(e.x) ||
-      (player.x <= Math.floor(e.x) + 65 &&
-        player.y == Math.floor(e.y) &&
-        player.x > Math.floor(e.x))
-    ) {
-      console.log("noo");
-      resetGame();
-      if(key =="left")
-      player.x = player.x + 100;
-      else if(key==="right"){
-        player.x = player.x - 100;
 
-      }else if(key ==="up"){
-        player.y = player.y + 90;
 
-      }else if(key==="down"){
-        player.y = player.y - 90;
-
-      }
-    }
-  });
-  
-
-  allEnemies.forEach(e => {
-    if (
-      player.x < Math.floor(e.x) &&
-      player.x + 90 >= Math.floor(e.x) &&
-      player.y == Math.floor(e.y)
-    ) {
-    
-    }
-  });
   // Changing player position logic
   if (key === "up") {
-    if (this.y < 100) {
+    if (player.y < 100) {
       alert("Player wins!!");
-      resetGame();
+      // resetGame();
     } else {
-      this.y = this.y - 90;
+      player.y = player.y - 90;
     }
   } else if (key === "down") {
-    if (this.y >= 400) {
-      this.y = 400;
+    if (player.y >= 400) {
+      return;
     } else {
-      this.y = this.y + 90;
+      player.y = player.y + 90;
     }
   } else if (key === "right") {
-    if (this.x >= 400) {
-      this.x = 200;
+    if (player.x >= 400) {
+      return;
     } else {
-      this.x = this.x + 100;
+      player.x = player.x + 100;
     }
   } else if (key === "left") {
-    // if(player.x - 80 === allEnemies[0].x ){
-    // }
-    if (this.x < 100) {
-      this.x = 200;
+    if (player.x < 100) {
+      return;
     } else {
-      this.x = this.x - 100;
+      player.x = player.x - 100;
     }
   }
-
 };
 
 // Now instantiate your objects.(Done)
 // Place all enemy objects in an array called allEnemies(Done)
 // Place the player object in a variable called player(Done)
+
 var allEnemies = [];
-var e1 = new Enemy(100, 220, 350);
-var e2 = new Enemy(0, 130, 350);
-var e3 = new Enemy(300, 40, 350);
+var e1 = new Enemy(100, 220, 200);
+var e2 = new Enemy(0, 130, 200);
+var e3 = new Enemy(300, 40, 200);
 
 allEnemies.push(e1);
 allEnemies.push(e2);
 allEnemies.push(e3);
 
 var player = new Player(200, 400, 0);
-var isPass = true;
-// checkiing for collisions
-setInterval(() => {
-  allEnemies.forEach(e => {
-    if (player.x == Math.floor(e.x) && player.y == Math.floor(e.y)) {
-      resetGame();
-      isPass = false;
-    }
-  });
-});
+
+
+
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
