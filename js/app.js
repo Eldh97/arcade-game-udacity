@@ -68,7 +68,7 @@ Player.prototype.handleInput = function(key) {
   if (key === "up") {
     if (player.y < 100) {
       alert("Player wins!!");
-      player.resetGameresetGame();
+      player.resetGame();
     } else {
       player.y = player.y - 90;
     }
