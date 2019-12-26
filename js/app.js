@@ -59,10 +59,31 @@ Player.prototype.handleInput = function(key) {
     ) {
       console.log("noo");
       resetGame();
-      return;
+      if(key =="left")
+      player.x = player.x + 100;
+      else if(key==="right"){
+        player.x = player.x - 100;
+
+      }else if(key ==="up"){
+        player.y = player.y + 90;
+
+      }else if(key==="down"){
+        player.y = player.y - 90;
+
+      }
     }
   });
   
+
+  allEnemies.forEach(e => {
+    if (
+      player.x < Math.floor(e.x) &&
+      player.x + 90 >= Math.floor(e.x) &&
+      player.y == Math.floor(e.y)
+    ) {
+    
+    }
+  });
   // Changing player position logic
   if (key === "up") {
     if (this.y < 100) {
@@ -84,35 +105,15 @@ Player.prototype.handleInput = function(key) {
       this.x = this.x + 100;
     }
   } else if (key === "left") {
-    if(player.x - 80 === allEnemies[0].x ){
-    }
+    // if(player.x - 80 === allEnemies[0].x ){
+    // }
     if (this.x < 100) {
       this.x = 200;
     } else {
       this.x = this.x - 100;
     }
   }
-  allEnemies.forEach(e => {
-    if (
-      player.x < Math.floor(e.x) &&
-      player.x + 90 >= Math.floor(e.x) &&
-      player.y == Math.floor(e.y)
-    ) {
-      resetGame();
-      if(key =="left")
-      player.x = player.x + 100;
-      else if(key==="right"){
-        player.x = player.x - 100;
 
-      }else if(key ==="up"){
-        player.y = player.y - 100;
-
-      }else if(key==="down"){
-        player.y = player.y + 100;
-
-      }
-    }
-  });
 };
 
 // Now instantiate your objects.(Done)
